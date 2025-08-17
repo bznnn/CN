@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Documento - Câmara dos Deputados</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      height: 120px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 40px;
+      white-space: pre-wrap;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gerador de Documento - Câmara dos Deputados</h1>
+
+    <label for="deputado">Nome do Deputado:</label>
+    <input type="text" id="deputado" placeholder="Ex: João da Silva">
+
+    <label for="cargo">Cargo:</label>
+    <input type="text" id="cargo" placeholder="Ex: Deputado Federal">
+
+    <label for="orgao">Órgão:</label>
+    <input type="text" id="orgao" placeholder="Ex: Presidência da Câmara dos Deputados, Comissão de Constituição e Justiça">
+
+    <label for="tipodoc">Tipo de Documento:</label>
+    <input type="text" id="tipodoc" placeholder="Ex: OFÍCIO, ORDEM DO DIA, DESPACHO, PORTARIA">
+
+    <label for="ementa">Conteúdo da Ementa:</label>
+    <textarea id="ementa" placeholder="Digite aqui a ementa..."></textarea>
+
+    <label for="conteudo">Conteúdo do Documento:</label>
+    <textarea id="conteudo" placeholder="Digite aqui o conteúdo do documento..."></textarea>
+
+    <button onclick="gerarCodigo()">Gerar Código HTML</button>
+
+    <div id="saida" class="output"></div>
+    <button id="copiarBtn" onclick="copiarCodigo()" style="display:none;">Copiar Código HTML</button>
+  </div>
+
+  <script>
+    function gerarCodigo() {
+      const deputado = document.getElementById('deputado').value;
+      const cargo = document.getElementById('cargo').value;
+      const orgao = document.getElementById('orgao').value;
+      const tipodoc = document.getElementById('tipodoc').value;
+      const ementa = document.getElementById('ementa').value;
+      const conteudo = document.getElementById('conteudo').value
+        .split('\n')
+        .map(linha => `<p>${linha}</p>`)
+        .join('\n');
+
+      const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Documento - Câmara dos Deputados</title>
+  <style>
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header img {
+      max-width: 120px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 5px;
+    }
+    h2 {
+      font-size: 1.3em;
+      color: #555;
+      margin-top: 0;
+    }
+    .ementa {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-left: 4px solid #2c3e50;
+      margin-bottom: 25px;
+    }
+    .documento {
+      line-height: 1.6;
+      text-align: center;
+    }
+    .conteudo {
+      line-height: 1.6;
+      text-align: justify;
+    }
+    .assinatura {
+      text-align: right;
+      margin-top: 50px;
+      font-style: italic;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #999;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://lh7-rt.googleusercontent.com/docsd/ANYlcfBi9oWqYgPpL7nGhyeFvhuA1b08bjHfwmohATuAHMacraS8ycI40ApeNXiwK2MeVpzOq7XtCVlK5KVhglpHpn22eJNA8fyRXRM0U4WqV8IDArdLfRo9SZ9bCTHNqdzskWnRhrxJO4KU4kHdugg" alt="Logo CÂMARA">
+      <h1>CÂMARA DOS DEPUTADOS</h1>
+      <h2>${orgao}</h2>
+    </header>
+
+    <section class="ementa">
+      <strong>EMENTA:</strong> ${ementa}
+    </section>
+
+    <section class="documento">
+      <p><strong>${tipodoc}</strong></p>
+    </section>
+    
+    <section class="conteudo">
+      ${conteudo}
+    </section>
+    
+    <div class="assinatura">
+      <center>
+      Datado e assinado digitalmente.<br><br>
+      <strong>${deputado}</strong><br>
+      ${cargo}
+    </div>
+
+    <div class="footer">
+      Câmara dos Deputados - Congresso Nacional Habbo
+    </div>
+  </div>
+</body>
+</html>`;
+
+      document.getElementById('saida').textContent = html;
+      document.getElementById('copiarBtn').style.display = 'inline-block';
+    }
+
+    function copiarCodigo() {
+      const codigo = document.getElementById('saida').textContent;
+      navigator.clipboard.writeText(codigo)
+        .then(() => {
+          alert("Código copiado com sucesso!");
+        })
+        .catch(() => {
+          alert("Erro ao copiar o código.");
+        });
+    }
+  </script>
+</body>
+</html>
