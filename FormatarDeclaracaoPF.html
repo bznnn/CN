@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador - Termo de Declaração</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      height: 150px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 40px;
+      white-space: pre-wrap;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gerador - Termo de Declaração</h1>
+
+    <label for="inquerito">Número do Inquérito:</label>
+    <input type="text" id="inquerito" placeholder="Ex: 001/2025">
+
+    <label for="data">Data:</label>
+    <input type="text" id="data" placeholder="Ex: 01 de setembro de 2025">
+
+    <label for="local">Local:</label>
+    <input type="text" id="local" placeholder="Ex: Sede da Polícia Federal - Habbo Hotel">
+
+    <label for="declarante">Declarante:</label>
+    <input type="text" id="declarante" placeholder="Ex: Nected, Procurador-Geral da República">
+
+    <label for="condutora">Autoridade Condutora:</label>
+    <input type="text" id="condutora" placeholder="Ex: Hiccup, Diretora-Geral da Polícia Federal">
+
+    <label for="responsavel">Autoridade Responsável pelo Registro:</label>
+    <input type="text" id="responsavel" placeholder="Ex: B.L.P.S., Superintendente da Polícia Federal">
+
+    <label for="conteudo">Perguntas e Respostas:</label>
+    <textarea id="conteudo" placeholder="Digite aqui o registro da oitiva..."></textarea>
+
+    <button onclick="gerarCodigo()">Gerar Código HTML</button>
+
+    <div id="saida" class="output"></div>
+    <button id="copiarBtn" onclick="copiarCodigo()" style="display:none;">Copiar Código HTML</button>
+  </div>
+
+  <script>
+    function gerarCodigo() {
+      const inquerito = document.getElementById('inquerito').value;
+      const data = document.getElementById('data').value;
+      const local = document.getElementById('local').value;
+      const declarante = document.getElementById('declarante').value;
+      const condutora = document.getElementById('condutora').value;
+      const responsavel = document.getElementById('responsavel').value;
+      const conteudo = document.getElementById('conteudo').value
+        .split('\n')
+        .map(linha => `<p>${linha}</p>`)
+        .join('\n');
+
+      const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Termo de Declaração - Inquérito ${inquerito}</title>
+  <style>
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header img {
+      max-width: 120px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 5px;
+    }
+    h2 {
+      font-size: 1.3em;
+      color: #555;
+      margin-top: 0;
+    }
+    .dados {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-left: 4px solid #2c3e50;
+      margin-bottom: 25px;
+    }
+    .decisao {
+      line-height: 1.6;
+      text-align: justify;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #999;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://i.imgur.com/YCj5LEK.png" alt="Logo PF">
+      <h1>POLÍCIA FEDERAL</h1>
+      <h2>MINISTÉRIO DA JUSTIÇA E SEGURANÇA PÚBLICA</h2>
+    </header>
+
+    <h2 style="text-align:center;">TERMO DE DECLARAÇÃO - INQUÉRITO Nº ${inquerito}</h2>
+
+    <section class="dados">
+      <p><strong>DATA:</strong> ${data}</p>
+      <p><strong>LOCAL:</strong> ${local}</p>
+      <p><strong>DECLARANTE:</strong> ${declarante}</p>
+      <p><strong>AUTORIDADE CONDUTORA:</strong> ${condutora}</p>
+      <p><strong>AUTORIDADE RESPONSÁVEL PELO REGISTRO:</strong> ${responsavel}</p>
+    </section>
+
+    <section class="decisao">
+      <p>Ao ${data}, no(a) ${local}, compareceu o(a) Sr(a). ${declarante}, a fim de prestar declarações no âmbito do Inquérito nº ${inquerito}. A oitiva foi conduzida por ${condutora}, acompanhada por ${responsavel}, que registrou o presente termo, conforme competência e atribuições definidas no Estatuto e Regimento Interno da Polícia Federal.</p>
+
+      <h3>As perguntas formuladas e as respostas do declarante foram registradas da seguinte forma:</h3>
+      ${conteudo}
+    </section>
+
+    <div class="footer">
+      Polícia Federal - Congresso Nacional Habbo
+    </div>
+  </div>
+</body>
+</html>`;
+
+      document.getElementById('saida').textContent = html;
+      document.getElementById('copiarBtn').style.display = 'inline-block';
+    }
+
+    function copiarCodigo() {
+      const codigo = document.getElementById('saida').textContent;
+      navigator.clipboard.writeText(codigo)
+        .then(() => {
+          alert("Código copiado com sucesso!");
+        })
+        .catch(() => {
+          alert("Erro ao copiar o código.");
+        });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador - Auto de Prisão em Flagrante</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      height: 150px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .output {
+      margin-top: 40px;
+      white-space: pre-wrap;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gerador - Auto de Prisão em Flagrante</h1>
+
+    <label for="datahora">Data e Hora:</label>
+    <input type="text" id="datahora" placeholder="Ex: 10 horas do dia 10 de fevereiro de 2015">
+
+    <label for="local">Local:</label>
+    <input type="text" id="local" placeholder="Ex: Goiânia - GO, 20º Distrito Policial">
+
+    <label for="autoridade">Autoridade Policial (Delegado):</label>
+    <input type="text" id="autoridade" placeholder="Ex: Bel. Fulano de Tal, Delegado de Polícia">
+
+    <label for="escrivao">Escrivão:</label>
+    <input type="text" id="escrivao" placeholder="Ex: Sicrano, Escrivão de Polícia">
+
+    <label for="condutor">Condutor:</label>
+    <input type="text" id="condutor" placeholder="Ex: Policial X, RG/Mat. XXXX">
+
+    <label for="conduzido">Conduzido:</label>
+    <input type="text" id="conduzido" placeholder="Ex: Nome do preso">
+
+    <label for="infracao">Infração (artigo):</label>
+    <input type="text" id="infracao" placeholder="Ex: Art. 155 do CP">
+
+    <label for="descricaoFato">Descrição do Fato:</label>
+    <textarea id="descricaoFato" placeholder="Ex: foi surpreendido logo após ter praticado..."></textarea>
+
+    <label for="testemunhas">Testemunhas (se houver):</label>
+    <input type="text" id="testemunhas" placeholder="Ex: Nome 1, Nome 2">
+
+    <label for="depoimentoCondutor">Depoimento do Condutor:</label>
+    <textarea id="depoimentoCondutor" placeholder="Digite aqui o depoimento do condutor..."></textarea>
+
+    <label for="depoimentoConduzido">Depoimento do Conduzido:</label>
+    <textarea id="depoimentoConduzido" placeholder="Digite aqui o depoimento do conduzido..."></textarea>
+
+    <label for="depoimentoTestemunhas">Depoimento das Testemunhas:</label>
+    <textarea id="depoimentoTestemunhas" placeholder="Digite aqui o depoimento das testemunhas (se houver)..."></textarea>
+
+    <label for="provas">Provas (se houver):</label>
+    <textarea id="provas" placeholder="Digite aqui a descrição das provas apresentadas..."></textarea>
+
+    <label for="decisao">Decisão da Autoridade Policial:</label>
+    <textarea id="decisao" placeholder="Digite aqui a decisão da autoridade policial..."></textarea>
+
+    <button onclick="gerarCodigo()">Gerar Código HTML</button>
+
+    <div id="saida" class="output"></div>
+    <button id="copiarBtn" onclick="copiarCodigo()" style="display:none;">Copiar Código HTML</button>
+  </div>
+
+  <script>
+    function gerarCodigo() {
+      const datahora = document.getElementById('datahora').value;
+      const local = document.getElementById('local').value;
+      const autoridade = document.getElementById('autoridade').value;
+      const escrivao = document.getElementById('escrivao').value;
+      const condutor = document.getElementById('condutor').value;
+      const conduzido = document.getElementById('conduzido').value;
+      const infracao = document.getElementById('infracao').value;
+      const descricaoFato = document.getElementById('descricaoFato').value;
+      const testemunhas = document.getElementById('testemunhas').value;
+      const depoimentoCondutor = document.getElementById('depoimentoCondutor').value;
+      const depoimentoConduzido = document.getElementById('depoimentoConduzido').value;
+      const depoimentoTestemunhas = document.getElementById('depoimentoTestemunhas').value;
+      const provas = document.getElementById('provas').value;
+      const decisao = document.getElementById('decisao').value;
+
+      const html = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto de Prisão em Flagrante</title>
+  <style>
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header img {
+      max-width: 120px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 5px;
+    }
+    h2 {
+      font-size: 1.3em;
+      color: #555;
+      margin-top: 0;
+    }
+    .dados {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-left: 4px solid #2c3e50;
+      margin-bottom: 25px;
+    }
+    .decisao {
+      line-height: 1.6;
+      text-align: justify;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #999;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://i.imgur.com/YCj5LEK.png" alt="Logo PF">
+      <h1>POLÍCIA FEDERAL</h1>
+      <h2>MINISTÉRIO DA JUSTIÇA E SEGURANÇA PÚBLICA</h2>
+    </header>
+
+    <h2 style="text-align:center;">AUTO DE PRISÃO EM FLAGRANTE</h2>
+
+    <section class="dados">
+      <p><strong>Data e Hora:</strong> ${datahora}</p>
+      <p><strong>Local:</strong> ${local}</p>
+      <p><strong>Autoridade Policial:</strong> ${autoridade}</p>
+      <p><strong>Escrivão:</strong> ${escrivao}</p>
+      <p><strong>Condutor:</strong> ${condutor}</p>
+      <p><strong>Conduzido:</strong> ${conduzido}</p>
+      <p><strong>Infração:</strong> ${infracao}</p>
+      <p><strong>Testemunhas:</strong> ${testemunhas}</p>
+    </section>
+
+    <section class="decisao">
+      <p>Às ${datahora}, no(a) ${local}, onde presente se encontrava ${autoridade}, comigo, ${escrivao}, Escrivão de Polícia, compareceu o CONDUTOR ${condutor}, conduzindo o preso ${conduzido}, por infração em tese ao artigo ${infracao}, haja vista ${descricaoFato}. Do fato, foram testemunhas: ${testemunhas}.</p>
+
+      <strong>Depoimento do Condutor:</strong>
+      <p>${depoimentoCondutor}</p>
+
+     <strong>Depoimento do Conduzido:</strong>
+      <p>${depoimentoConduzido}</p>
+
+      <strong>Depoimento de Testemunhas:</strong>
+      <p>${depoimentoTestemunhas}</p>
+
+      <strong>Provas:</strong>
+      <p>${provas}</p>
+      <p>${provas}</p>
+
+      <strong>Decisão da Autoridade Policial:</strong>
+      <p>${decisao}</p>
+    
+	  <center>
+	  <p>   <strong> ${autoridade} </strong> </p> </strong>
+	  <p> Datado e assinado digitalmente.</p>
+	</strong>
+	</section>
+
+    <div class="footer">
+      Polícia Federal - Congresso Nacional Habbo
+    </div>
+  </div>
+</body>
+</html>`;
+
+      document.getElementById('saida').textContent = html;
+      document.getElementById('copiarBtn').style.display = 'inline-block';
+    }
+
+    function copiarCodigo() {
+      const codigo = document.getElementById('saida').textContent;
+      navigator.clipboard.writeText(codigo)
+        .then(() => {
+          alert("Código copiado com sucesso!");
+        })
+        .catch(() => {
+          alert("Erro ao copiar o código.");
+        });
+    }
+  </script>
+</body>
+</html>
