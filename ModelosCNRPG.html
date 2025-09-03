@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CN-RPG Modelos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #11182e;
+      --muted: #8a94a7;
+      --text: #e6eaf2;
+      --accent: #5aa9ff;
+      --accent-2: #9bffd1;
+      --ring: rgba(90,169,255,.45);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1000px 600px at 10% -10%, rgba(90,169,255,.12), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(155,255,209,.10), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 20px 56px; }
+    header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+    }
+    header img { height: 48px; width: 48px; border-radius: 10px; }
+    header h1 { font-size: 1.75rem; margin: 0; letter-spacing: .2px; }
+    header p { margin: 2px 0 0; color: var(--muted); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 40%) , var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px; padding: 18px; position: relative; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .card h2 { font-size: 1rem; margin: 0 0 8px; }
+    .file { font-size: .85rem; color: var(--muted); margin-bottom: 14px; }
+    .actions { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      appearance: none; border: 1px solid rgba(255,255,255,.12);
+      background: rgba(90,169,255,.1);
+      color: var(--text); text-decoration: none; font-weight: 600;
+      padding: 9px 12px; border-radius: 10px; line-height: 1;
+      transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease;
+      box-shadow: 0 0 0 0 var(--ring);
+    }
+    .btn:focus, .btn:hover { border-color: var(--accent); box-shadow: 0 0 0 6px var(--ring); transform: translateY(-1px); }
+    .ghost { border-style: dashed; background: transparent; color: var(--muted); font-weight: 600; }
+    .tag { font-size: .72rem; color: var(--accent-2); border: 1px solid rgba(155,255,209,.35); padding: 3px 8px; border-radius: 999px; }
+
+    footer { margin-top: 36px; color: var(--muted); font-size: .9rem; }
+    .hint { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+    .list { margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://i.imgur.com/mMJLMF2.png" alt="CN-RPG logo" />
+      <div>
+        <h1>CN-RPG Modelos</h1>
+        <p>Índice de modelos utilizados pelos jogadores do CN-RPG. Selecione um modelo para abrir.</p>
+      </div>
+    </header>
+
+    <div class="grid list">
+      <!-- Formatar.html -->
+      <article class="card">
+        <h2>Modelo de Formatação de Decisão do STF</h2>
+        <div class="file">Arquivo: <strong>Formatar.html</strong></div>
+        <div class="actions">
+          <a id="link-Formatar" class="btn" href="https://bznnn.github.io/CN/Formatar.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima (Formatar.html ou URL absoluta) -->
+      </article>
+
+      <!-- FormatarAPFPF.html -->
+      <article class="card">
+        <h2>Modelo de Formatação de Auto de Prisão em Flagrante (PF)</h2>
+        <div class="file">Arquivo: <strong>FormatarAPFPF.html</strong></div>
+        <div class="actions">
+          <a id="link-FormatarAPFPF" class="btn" href="https://bznnn.github.io/CN/FormatarAPFPF.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima -->
+      </article>
+
+      <!-- FormatarCamara.html -->
+      <article class="card">
+        <h2>Modelo de Formatação da Câmara</h2>
+        <div class="file">Arquivo: <strong>FormatarCamara.html</strong></div>
+        <div class="actions">
+          <a id="link-FormatarCamara" class="btn" href="https://bznnn.github.io/CN/FormatarCamara.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima -->
+      </article>
+
+      <!-- FormatarDeclaracaoPF.html -->
+      <article class="card">
+        <h2>Modelo de Formatação de Declaração (PF)</h2>
+        <div class="file">Arquivo: <strong>FormatarDeclaracaoPF.html</strong></div>
+        <div class="actions">
+          <a id="link-FormatarDeclaracaoPF" class="btn" href="https://bznnn.github.io/CN/FormatarDeclaracaoPF.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima -->
+      </article>
+
+      <!-- FormatarExecutivo.html -->
+      <article class="card">
+        <h2>Modelo de Formatação do Poder Executivo</h2>
+        <div class="file">Arquivo: <strong>FormatarExecutivo.html</strong></div>
+        <div class="actions">
+          <a id="link-FormatarExecutivo" class="btn" href="https://bznnn.github.io/CN/FormatarExecutivo.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima -->
+      </article>
+
+      <!-- FormatarPF.html -->
+      <article class="card">
+        <h2>Modelo de Formatação da Polícia Federal</h2>
+        <div class="file">Arquivo: <strong>FormatarPF.html</strong></div>
+        <div class="actions">
+          <a id="link-FormatarPF" class="btn" href="https://bznnn.github.io/CN/FormatarPF.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima -->
+      </article>
+
+      <!-- FormatarPGR.html -->
+      <article class="card">
+        <h2>Modelo de Formatação da PGR</h2>
+        <div class="file">Arquivo: <strong>FormatarPGR.html</strong></div>
+        <div class="actions">
+          <a id="link-FormatarPGR" class="btn" href="https://bznnn.github.io/CN/FormatarPGR.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima -->
+      </article>
+
+      <!-- FormatarTSE.html -->
+      <article class="card">
+        <h2>Modelo de Formatação do TSE</h2>
+        <div class="file">Arquivo: <strong>FormatarTSE.html</strong></div>
+        <div class="actions">
+          <a id="link-FormatarTSE" class="btn" href="https://bznnn.github.io/CN/FormatarTSE.html">Acessar</a>
+        </div>
+        <!-- coloque o link final no href acima -->
+      </article>
+    </div>
+
+    <footer>
+      CN-RPG • Modelos by Mitogabrneto
+    </footer>
+  </div>
+</body>
+</html>
